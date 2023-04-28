@@ -1,4 +1,4 @@
-chrome.devtools.panels.create("WinObsExt", null, "index.html", (panel) => {
+chrome.devtools.panels.create("Windowed Observable", null, "index.html", (panel) => {
   var appIsMounted = false;
 
   panel.onShown.addListener(() => {
