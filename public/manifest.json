@@ -1,0 +1,8 @@
+{
+  "manifest_version": 3,
+  "name": "Windowed Observable Dev Tools",
+  "description": "Visualizes the cross application communication done via windowed observable.",
+  "version": "1.0",
+  "permissions": ["debugger"],
+  "devtools_page": "devtools.html"
+}
