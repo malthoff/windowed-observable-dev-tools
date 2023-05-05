@@ -43,6 +43,6 @@ Create a build
 yarn build
 ```
 
-Add the extension to Chrome
+Add the extension to Chrome by pointing to the /dist folder following these instructions:
 
 [Install chrome extension locally](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked)
