@@ -32,7 +32,7 @@ function showDetails(
       <div class="flex gap-8 item-center items-center">
         <!-- Event source-->
         <div
-          class="clip p-4 w-1-4 flex-shrink-0 break-words text-grey-900 self-stretch"
+          class="clip p-4 w-1-4 flex-shrink-0 break-words self-stretch"
         >
           {{ item.source }}
         </div>

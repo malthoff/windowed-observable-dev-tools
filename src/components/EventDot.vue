@@ -11,29 +11,53 @@ const props = withDefaults(
     isActive: false,
   }
 );
-
-const color = computed(() => (props.isLatest ? "#08dd7a" : "#355647"));
 </script>
 
 <template>
-  <div class="relative">
+  <div class="event relative">
     <svg viewBox="0 0 50 50" width="25" class="cursor-pointer">
       <!-- Solid circle with no border or stroke -->
-      <circle cx="25" cy="25" r="16" :fill="color" />
+      <circle
+        class="dot"
+        :class="{ 'is-active': props.isActive, 'is-latest': props.isLatest }"
+        cx="25"
+        cy="25"
+        r="16"
+      />
 
       <!-- Transparent circle with stroke only -->
       <circle
         v-if="props.isActive"
-        class="pointer-events-none"
+        class="active-ring pointer-events-none"
         cx="25"
         cy="25"
         r="22"
-        stroke="#08dd7a"
-        stroke-width="5"
-        fill="transparent"
       />
     </svg>
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.event {
+  --dotColor: hsl(157, 5%, 70%);
+
+  .dot {
+    fill: var(--dotColor);
+
+    &.is-latest {
+      fill: var(--highlight-color);
+    }
+  }
+
+  .active-ring {
+    stroke: var(--highlight-color);
+    stroke-width: 5;
+    fill: transparent;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .event {
+    --dotColor: #355647;
+  }
+}
+</style>

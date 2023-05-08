@@ -23,8 +23,6 @@ watch(
   }
 );
 
-console.log("array, ", data.value, Array.isArray(data.value));
-
 const isOpen = ref(props.open);
 </script>
 
@@ -47,5 +45,3 @@ const isOpen = ref(props.open);
     </ul>
   </div>
 </template>
-
-<style lang="scss" scoped></style>

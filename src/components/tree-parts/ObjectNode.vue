@@ -2,7 +2,6 @@
 import { computed, defineProps, ref } from "vue";
 import TreeNode from "../TreeNode.vue";
 import FolderToggle from "./FolderToggle.vue";
-import { isArray } from "@vue/shared";
 
 const props = withDefaults(
   defineProps<{
@@ -62,12 +61,10 @@ function isObject(data: any) {
           >
             <FolderToggle :open="openStates.get(key)"></FolderToggle>
           </span>
-          <span class="font-bold text-green-600">{{ key }}</span>
+          <span class="key font-bold">{{ key }}</span>
           <span class="pr-2 pl-1"
             >:
-            <span
-              v-if="isArrayWithContent(props.data[key])"
-              class="text-grey-700"
+            <span v-if="isArrayWithContent(props.data[key])" class=""
               >({{ props.data[key].length }})
             </span></span
           >
@@ -81,6 +78,11 @@ function isObject(data: any) {
     </ul>
   </template>
   <template v-else>
-    <span class="text-grey-600">{{ objectPreview }}</span>
+    <span class="">{{ objectPreview }}</span>
   </template>
 </template>
+<style lang="scss" scoped>
+.key {
+  color: var(--highlight-color);
+}
+</style>

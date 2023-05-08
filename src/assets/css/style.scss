@@ -1,14 +1,20 @@
 :root {
-  line-height: 1.5;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --color: rgba(32, 32, 32, 1);
+  --bgColor: white;
+  --highlight-color: #24c115;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    --color: rgb(198 204 209);
+    --bgColor: #242424;
+    --highlight-color: #08dd7a;
   }
+}
+
+html {
+  color-scheme: light dark;
+  color: var(--color);
+  background-color: var(--bgColor);
+  line-height: 1.5;
 }
