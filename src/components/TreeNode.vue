@@ -26,6 +26,8 @@ const isObject = computed(() => {
 const isOther = computed(() => {
   return !isArray && !isObject;
 });
+
+const paddingLeft = computed(() => (props.level ? "0.5rem" : 0));
 </script>
 
 <template>
@@ -45,6 +47,6 @@ const isOther = computed(() => {
 <style lang="scss" scoped>
 ul,
 li {
-  padding-left: 0.25rem;
+  padding-left: v-bind(paddingLeft);
 }
 </style>

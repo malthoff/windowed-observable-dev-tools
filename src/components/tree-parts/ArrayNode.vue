@@ -34,8 +34,8 @@ const isOpen = ref(props.open);
     :level="props.level + 1"
     :open="true"
   ></TreeNode>
-  <div v-else class="flex gap-1">
-    <ul :class="[{ hidden: !isOpen }]" class="flex flex-col pl-12">
+  <div v-else>
+    <ul :class="[{ hidden: !isOpen }]" class="flex flex-col pl-8">
       <template v-for="(item, index) in data" :key="index">
         <li class="flex">
           <span>{{ index }}:</span>
