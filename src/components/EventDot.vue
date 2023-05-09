@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, defineProps } from "vue";
+import { defineProps } from "vue";
 
 const props = withDefaults(
   defineProps<{
