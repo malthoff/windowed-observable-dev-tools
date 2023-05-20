@@ -39,6 +39,7 @@ yarn install
 ```
 
 Create a build
+
 ```
 yarn build
 ```
@@ -46,3 +47,10 @@ yarn build
 Add the extension to Chrome by pointing to the /dist folder following these instructions:
 
 [Install chrome extension locally](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked)
+
+### Features planned (unordered list)
+
+- Keyboard navigation in event dots
+- Visualize different event types in same event namespace in event dot list
+- Filtering event details with keyword input
+- to be continued
