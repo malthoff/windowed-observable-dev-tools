@@ -53,4 +53,8 @@ Add the extension to Chrome by pointing to the /dist folder following these inst
 - Keyboard navigation in event dots
 - Visualize different event types in same event namespace in event dot list
 - Filtering event details with keyword input
+- Display number of observers for each namespace
+- Visualize events that differ (or not differ) from the previous event.
+- Porting the extension to Firefox / Edge / Safari
+- Retrigger events from dev tools panel.
 - to be continued
