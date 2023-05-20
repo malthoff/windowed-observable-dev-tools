@@ -22,7 +22,7 @@ function showDetails(
   eventIndex: number
 ) {
   activeEvent.value = { eventTypeIndex, eventIndex };
-  emit("select", event.payload);
+  emit("select", event);
 }
 </script>
 
@@ -31,9 +31,7 @@ function showDetails(
     <template v-for="(item, eventTypeIndex) in props.events" :key="item.source">
       <div class="flex gap-8 item-center items-center">
         <!-- Event source-->
-        <div
-          class="clip p-4 w-1-4 flex-shrink-0 break-words self-stretch"
-        >
+        <div class="clip p-4 w-1-4 flex-shrink-0 break-words self-stretch">
           {{ item.source }}
         </div>
         <!-- Dots for each event entry-->
@@ -41,6 +39,7 @@ function showDetails(
           <template v-for="(entry, eventIndex) in item.value" :key="eventIndex">
             <div>
               <EventDot
+                :title="entry.type"
                 :isLatest="eventIndex === item.value.length - 1"
                 :isActive="
                   eventIndex === activeEvent?.eventIndex &&
