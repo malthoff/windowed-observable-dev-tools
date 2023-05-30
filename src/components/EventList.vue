@@ -1,5 +1,12 @@
 <script lang="ts" setup>
-import { Ref, defineEmits, defineProps, ref } from "vue";
+import {
+  Ref,
+  defineEmits,
+  defineProps,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+} from "vue";
 import { WinObsEvent, WindowObservableEvent } from "../types/event";
 import EventDot from "./EventDot.vue";
 
@@ -16,14 +23,72 @@ type ActiveEvent = {
 
 const activeEvent: Ref<ActiveEvent | undefined> = ref();
 
-function showDetails(
-  event: WinObsEvent,
-  eventTypeIndex: number,
-  eventIndex: number
-) {
+function showDetails(eventTypeIndex: number, eventIndex: number) {
   activeEvent.value = { eventTypeIndex, eventIndex };
-  emit("select", event);
+  broadcastActiveEvent();
 }
+
+function broadcastActiveEvent() {
+  const type = props.events.find(
+    (_, index) => index === activeEvent.value?.eventTypeIndex
+  );
+
+  const event = type?.value.find(
+    (_, index) => index === activeEvent.value?.eventIndex
+  );
+
+  if (event) {
+    emit("select", event);
+  }
+}
+
+function onKeyUp(event: KeyboardEvent) {
+  if (!!activeEvent) {
+    switch (event.key) {
+      case "ArrowLeft":
+        activatePreviousEvent();
+        break;
+      case "ArrowRight":
+        activeNextEvent();
+        break;
+    }
+
+    broadcastActiveEvent();
+  }
+}
+
+function activatePreviousEvent() {
+  if (!!activeEvent.value && activeEvent.value.eventIndex > 0) {
+    activeEvent.value.eventIndex--;
+  }
+}
+
+function activeNextEvent() {
+  const currentEventNamespace = props.events.find(
+    (_, index) => index === activeEvent.value?.eventTypeIndex
+  );
+  if (!currentEventNamespace) {
+    return;
+  }
+
+  const maxEventIndex = currentEventNamespace.value.length - 1;
+
+  if (!!activeEvent.value && activeEvent.value.eventIndex < maxEventIndex) {
+    activeEvent.value.eventIndex++;
+  }
+}
+
+function initKeyboardNavigation() {
+  document.addEventListener("keyup", onKeyUp);
+}
+
+onMounted(() => {
+  initKeyboardNavigation();
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener("keyup", onKeyUp);
+});
 </script>
 
 <template>
@@ -45,7 +110,7 @@ function showDetails(
                   eventIndex === activeEvent?.eventIndex &&
                   eventTypeIndex === activeEvent.eventTypeIndex
                 "
-                @click="showDetails(entry, eventTypeIndex, eventIndex)"
+                @click="showDetails(eventTypeIndex, eventIndex)"
               ></EventDot>
             </div>
           </template>
